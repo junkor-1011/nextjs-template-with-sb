@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 
 import { Header } from './Header';
@@ -7,6 +8,7 @@ type User = {
   name: string;
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const Page: React.VFC = () => {
   const [user, setUser] = React.useState<User>();
 

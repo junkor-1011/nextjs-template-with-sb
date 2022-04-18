@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import './button.css';
 
@@ -40,6 +41,7 @@ export const Button = ({
       type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       style={{ backgroundColor }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {label}
