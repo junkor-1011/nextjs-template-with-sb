@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jest: true,
   },
   extends: [
     'airbnb',
@@ -20,23 +21,17 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'jest', 'testing-library'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
-      1,
+      2,
       {
         extensions: ['.js', '.jsx', '.ts', 'tsx'],
       },
     ],
     'react/require-default-props': 'off',
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/*.stories.tsx'],
-      },
-    ],
     'import/extensions': [
       2,
       {
@@ -44,8 +39,29 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-        jsn: 'always',
+        json: 'always',
       },
     ],
   },
+  overrides: [
+    {
+      files: [
+        '**/*.test.ts',
+        '**/*.test.tsx',
+        '**/*.test.js',
+        '**/*.test.jsx',
+        '**/__tests__/**/*.ts',
+        '**/__tests__/**/*.tsx',
+        '**/__tests__/**/*.js',
+        '**/__tests__/**/*.jsx',
+      ],
+      extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
+    },
+    {
+      files: ['**/*.stories.ts', '**/*.stories.tsx', '**/*.stories.js', '**/*.stories.jsx'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+  ],
 };
